@@ -23,7 +23,7 @@ class UsersSchema(ma.Schema):
 
 
 user_schema = UsersSchema()
-#users_schema = UsersSchema(strict=True, many=True)
+users_schema = UsersSchema(strict=True, many=True)
 
 """Cria tabela a partir do Schema definido"""
 with app.app_context():
