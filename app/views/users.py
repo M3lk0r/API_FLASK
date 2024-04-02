@@ -9,13 +9,17 @@ def post_user():
     nome = request.json['nome']
     email = request.json['email']
     senha = generate_password_hash(request.json['senha'])
-
+    genero = request.json['genero']
+    telefone = request.json['telefone']
+    estado = request.json['estado']
+    cidade = request.json['cidade']
+    
     user = user_by_email(email)
     if user:
         result = user_schema.dump(user)
         return jsonify({'message': 'email already exists', 'data': {}})
     
-    user = Users(nome, email, senha)
+    user = Users(nome, email, senha, genero, telefone, estado, cidade)
     
     try:
         if not is_valid_email(email):
@@ -48,6 +52,10 @@ def update_user(id):
     nome = request.json.get('nome', user.nome)
     email = request.json.get('email', user.email)
     senha = request.json.get('senha', user.senha)
+    genero = request.json['genero']
+    telefone = request.json['telefone']
+    estado = request.json['estado']
+    cidade = request.json['cidade']
 
     if senha:
         senha = generate_password_hash(senha)
@@ -59,6 +67,10 @@ def update_user(id):
         user.email = email
         if senha:
             user.senha = senha
+        user.genero = genero
+        user.telefone = telefone
+        user.estado = estado
+        user.cidade = cidade
         db.session.commit()
         result = user_schema.dump(user)
         return jsonify({'message': 'Usuário atualizado com sucesso!', 'data': result}), 200

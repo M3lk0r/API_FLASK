@@ -13,7 +13,6 @@ def authenticate():
     return helper.auth()
 
 @app.route('/users', methods=['POST'])
-@helper.token_required
 def cadastro():
     return users.post_user()
 

@@ -7,7 +7,7 @@ app.config.from_object('config')
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 
-from .models import users, posts, commentaries
+from .models import users, commentaries
 from .views import users, helper
 from .routes import routes
 
