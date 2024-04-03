@@ -17,7 +17,7 @@ def post_user():
     user = user_by_email(email)
     if user:
         result = user_schema.dump(user)
-        return jsonify({'message': 'email already exists', 'data': {}})
+        return jsonify({'message': 'email already exists', 'data': {}}), 409
     
     user = Users(nome, email, senha, genero, telefone, estado, cidade)
     
