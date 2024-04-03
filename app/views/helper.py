@@ -47,7 +47,7 @@ def auth():
     if not user:
         return jsonify({'message': 'user not found', 'data': []}), 401
 
-    if user and check_password_hash(user.password, auth.password):
+    if user and check_password_hash(user.senha, auth.password):
         token = jwt.encode({'email': user.email, 'exp': datetime.datetime.now() + datetime.timedelta(hours=12) }, app.config['SECRET_KEY'])
         return jsonify({'message': 'Validated successfully', 'token': token, 'exp': datetime.datetime.now() + datetime.timedelta(hours=12)}), 200
 
